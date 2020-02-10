@@ -1,0 +1,238 @@
+//{{Sensors
+Sensor 0	E    0.0	BOOL	Transelevator is in position 0145
+Sensor 1	E    0.1	BOOL	Transelevator has stopped
+Sensor 2	E    0.2	BOOL	Table is in position 1
+Sensor 3	E    0.3	BOOL	Table is in the middle
+Sensor 4	E    0.4	BOOL	Table is in position 2
+Sensor 5	E    0.5	BOOL	Table has moved down
+Sensor 6	E    0.6	BOOL	There is cargo to pick up at 0145
+Sensor 7	E    0.7	BOOL	Conveyer ready to pick up cargo at other end
+//{{Actuators
+Actuator 0	A    0.0	BOOL	
+Actuator 1	A    0.1	BOOL	
+Actuator 2	A    0.2	BOOL	
+Actuator 3	A    0.3	BOOL	
+Actuator 4	A    0.4	BOOL	
+Actuator 5	A    0.5	BOOL	
+Actuator 6	A    0.6	BOOL	
+Actuator 7	A    0.7	BOOL	
+//{{Logical Elements
+Position 00	M    0.0	BOOL	
+Position 01	M    0.1	BOOL	
+Position 02	M    0.2	BOOL	
+Position 03	M    0.3	BOOL	
+Position 04	M    0.4	BOOL	
+Position 10	M    1.0	BOOL	
+Position 11	M    1.1	BOOL	
+Position 12	M    1.2	BOOL	
+Position 13	M    1.3	BOOL	
+Position 14	M    1.4	BOOL	
+Position 20	M    2.0	BOOL	
+Position 21	M    2.1	BOOL	
+Position 22	M    2.2	BOOL	
+Position 23	M    2.3	BOOL	
+Position 24	M    2.4	BOOL	
+Position 30	M    3.0	BOOL	
+Position 31	M    3.1	BOOL	
+Position 32	M    3.2	BOOL	
+Position 33	M    3.3	BOOL	
+Position 34	M    3.4	BOOL	
+Position 40	M    4.0	BOOL	
+Position 41	M    4.1	BOOL	
+Position 42	M    4.2	BOOL	
+Position 43	M    4.3	BOOL	
+Position 44	M    4.4	BOOL	
+Position 50	M    5.0	BOOL	
+Position 51	M    5.1	BOOL	
+Position 52	M    5.2	BOOL	
+Position 53	M    5.3	BOOL	
+Position 54	M    5.4	BOOL	
+Position 60	M    6.0	BOOL	
+Position 61	M    6.1	BOOL	
+Position 62	M    6.2	BOOL	
+Position 63	M    6.3	BOOL	
+Position 64	M    6.4	BOOL	
+Position 70	M    7.0	BOOL	
+Position 71	M    7.1	BOOL	
+Position 72	M    7.2	BOOL	
+Position 73	M    7.3	BOOL	
+Position 74	M    7.4	BOOL	
+Position 80	M    8.0	BOOL	
+Position 81	M    8.1	BOOL	
+Position 82	M    8.2	BOOL	
+Position 83	M    8.3	BOOL	
+Position 84	M    8.4	BOOL	
+Position 90	M    9.0	BOOL	
+Position 91	M    9.1	BOOL	
+Position 92	M    9.2	BOOL	
+Position 93	M    9.3	BOOL	
+Position 94	M    9.4	BOOL	
+Position 0	M    9.5	BOOL	
+Flip Flop 00	M    9.6	BOOL	
+Flip Flop 01	M    9.7	BOOL	
+Flip Flop 02	M   10.0	BOOL	
+Flip Flop 03	M   10.1	BOOL	
+Flip Flop 04	M   10.2	BOOL	
+Flip Flop 10	M   10.3	BOOL	
+Flip Flop 11	M   10.4	BOOL	
+Flip Flop 12	M   10.5	BOOL	
+Flip Flop 13	M   10.6	BOOL	
+Flip Flop 14	M   10.7	BOOL	
+Flip Flop 20	M   11.0	BOOL	
+Flip Flop 21	M   11.1	BOOL	
+Flip Flop 22	M   11.2	BOOL	
+Flip Flop 23	M   11.3	BOOL	
+Flip Flop 24	M   11.4	BOOL	
+Flip Flop 30	M   11.5	BOOL	
+Flip Flop 31	M   11.6	BOOL	
+Flip Flop 32	M   11.7	BOOL	
+Flip Flop 33	M   12.0	BOOL	
+Flip Flop 34	M   12.1	BOOL	
+Flip Flop 40	M   12.2	BOOL	
+Flip Flop 41	M   12.3	BOOL	
+Flip Flop 42	M   12.4	BOOL	
+Flip Flop 43	M   12.5	BOOL	
+Flip Flop 44	M   12.6	BOOL	
+Flip Flop 50	M   12.7	BOOL	
+Flip Flop 51	M   13.0	BOOL	
+Flip Flop 52	M   13.1	BOOL	
+Flip Flop 53	M   13.2	BOOL	
+Flip Flop 54	M   13.3	BOOL	
+Flip Flop 60	M   13.4	BOOL	
+Flip Flop 61	M   13.5	BOOL	
+Flip Flop 62	M   13.6	BOOL	
+Flip Flop 63	M   13.7	BOOL	
+Flip Flop 64	M   14.0	BOOL	
+Flip Flop 70	M   14.1	BOOL	
+Flip Flop 71	M   14.2	BOOL	
+Flip Flop 72	M   14.3	BOOL	
+Flip Flop 73	M   14.4	BOOL	
+Flip Flop 74	M   14.5	BOOL	
+Flip Flop 80	M   14.6	BOOL	
+Flip Flop 81	M   14.7	BOOL	
+Flip Flop 82	M   15.0	BOOL	
+Flip Flop 83	M   15.1	BOOL	
+Flip Flop 84	M   15.2	BOOL	
+Flip Flop 90	M   15.3	BOOL	
+Flip Flop 91	M   15.4	BOOL	
+Flip Flop 92	M   15.5	BOOL	
+Flip Flop 93	M   15.6	BOOL	
+Flip Flop 94	M   15.7	BOOL	
+Baza	M   16.0	BOOL	
+Has Box	M   16.1	BOOL	
+Flip Flop Baza	M   16.2	BOOL	
+Flip Flop A6	M   16.3	BOOL	
+Timer A6	T     20	TIMER	
+Timer A6 out	M   16.4	BOOL	
+Flip flop A7	M   16.5	BOOL	
+Flip Flop Has Box	M   16.6	BOOL	
+Position Mem 00	M   16.7	BOOL	
+Position Mem 01	M   17.0	BOOL	
+Position Mem 02	M   17.1	BOOL	
+Position Mem 03	M   17.2	BOOL	
+Position Mem 04	M   17.3	BOOL	
+Position Mem 10	M   17.4	BOOL	
+Position Mem 11	M   17.5	BOOL	
+Position Mem 12	M   17.6	BOOL	
+Position Mem 13	M   17.7	BOOL	
+Position Mem 14	M   18.0	BOOL	
+Position Mem 20	M   18.1	BOOL	
+Position Mem 21	M   18.2	BOOL	
+Position Mem 22	M   18.3	BOOL	
+Position Mem 23	M   18.4	BOOL	
+Position Mem 24	M   18.5	BOOL	
+Position Mem 30	M   18.6	BOOL	
+Position Mem 31	M   18.7	BOOL	
+Position Mem 32	M   19.0	BOOL	
+Position Mem 33	M   19.1	BOOL	
+Position Mem 34	M   19.2	BOOL	
+Position Mem 40	M   19.3	BOOL	
+Position Mem 41	M   19.4	BOOL	
+Position Mem 42	M   19.5	BOOL	
+Position Mem 43	M   19.6	BOOL	
+Position Mem 44	M   19.7	BOOL	
+Position Mem 50	M   20.0	BOOL	
+Position Mem 51	M   20.1	BOOL	
+Position Mem 52	M   20.2	BOOL	
+Position Mem 53	M   20.3	BOOL	
+Position Mem 54	M   20.4	BOOL	
+Position Mem 60	M   20.5	BOOL	
+Position Mem 61	M   20.6	BOOL	
+Position Mem 62	M   20.7	BOOL	
+Position Mem 63	M   21.0	BOOL	
+Position Mem 64	M   21.1	BOOL	
+Position Mem 70	M   21.2	BOOL	
+Position Mem 71	M   21.3	BOOL	
+Position Mem 72	M   21.4	BOOL	
+Position Mem 73	M   21.5	BOOL	
+Position Mem 74	M   21.6	BOOL	
+Position Mem 80	M   21.7	BOOL	
+Position Mem 81	M   22.0	BOOL	
+Position Mem 82	M   22.1	BOOL	
+Position Mem 83	M   22.2	BOOL	
+Position Mem 84	M   22.3	BOOL	
+Position Mem 90	M   22.4	BOOL	
+Position Mem 91	M   22.5	BOOL	
+Position Mem 92	M   22.6	BOOL	
+Position Mem 93	M   22.7	BOOL	
+Position Mem 94	M   23.0	BOOL	
+Flip Flop Mem 00	M   23.1	BOOL	
+Flip Flop Mem 01	M   23.2	BOOL	
+Flip Flop Mem 02	M   23.3	BOOL	
+Flip Flop Mem 03	M   23.4	BOOL	
+Flip Flop Mem 04	M   23.5	BOOL	
+Flip Flop Mem 10	M   23.6	BOOL	
+Flip Flop Mem 11	M   23.7	BOOL	
+Flip Flop Mem 12	M   24.0	BOOL	
+Flip Flop Mem 13	M   24.1	BOOL	
+Flip Flop Mem 14	M   24.2	BOOL	
+Flip Flop Mem 20	M   24.3	BOOL	
+Flip Flop Mem 21	M   24.4	BOOL	
+Flip Flop Mem 22	M   24.5	BOOL	
+Flip Flop Mem 23	M   24.6	BOOL	
+Flip Flop Mem 24	M   24.7	BOOL	
+Flip Flop Mem 30	M   25.0	BOOL	
+Flip Flop Mem 31	M   25.1	BOOL	
+Flip Flop Mem 32	M   25.2	BOOL	
+Flip Flop Mem 33	M   25.3	BOOL	
+Flip Flop Mem 34	M   25.4	BOOL	
+Flip Flop Mem 40	M   25.5	BOOL	
+Flip Flop Mem 41	M   25.6	BOOL	
+Flip Flop Mem 42	M   25.7	BOOL	
+Flip Flop Mem 43	M   26.0	BOOL	
+Flip Flop Mem 44	M   26.1	BOOL	
+Flip Flop Mem 50	M   26.2	BOOL	
+Flip Flop Mem 51	M   26.3	BOOL	
+Flip Flop Mem 52	M   26.4	BOOL	
+Flip Flop Mem 53	M   26.5	BOOL	
+Flip Flop Mem 54	M   26.6	BOOL	
+Flip Flop Mem 60	M   26.7	BOOL	
+Flip Flop Mem 61	M   27.0	BOOL	
+Flip Flop Mem 62	M   27.1	BOOL	
+Flip Flop Mem 63	M   27.2	BOOL	
+Flip Flop Mem 64	M   27.3	BOOL	
+Flip Flop Mem 70	M   27.4	BOOL	
+Flip Flop Mem 71	M   27.5	BOOL	
+Flip Flop Mem 72	M   27.6	BOOL	
+Flip Flop Mem 73	M   27.7	BOOL	
+Flip Flop Mem 74	M   28.0	BOOL	
+Flip Flop Mem 80	M   28.1	BOOL	
+Flip Flop Mem 81	M   28.2	BOOL	
+Flip Flop Mem 82	M   28.3	BOOL	
+Flip Flop Mem 83	M   28.4	BOOL	
+Flip Flop Mem 84	M   28.5	BOOL	
+Flip Flop Mem 90	M   28.6	BOOL	
+Flip Flop Mem 91	M   28.7	BOOL	
+Flip Flop Mem 92	M   29.0	BOOL	
+Flip Flop Mem 93	M   29.1	BOOL	
+Flip Flop Mem 94	M   29.2	BOOL	
+Column 0 Full	M   29.3	BOOL	
+Column 1 Full	M   29.4	BOOL	
+Column 2 Full	M   29.5	BOOL	
+Column 3 Full	M   29.6	BOOL	
+Column 4 Full	M   29.7	BOOL	
+Column 5 Full	M   30.0	BOOL	
+Column 6 Full	M   30.1	BOOL	
+Column 7 Full	M   30.2	BOOL	
+Column 8 Full	M   30.3	BOOL	
+Column 9 Full	M   30.4	BOOL	

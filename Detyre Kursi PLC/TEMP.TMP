@@ -1,0 +1,1927 @@
+//{{V2}}
+ORGANIZATION_BLOCK OB1
+TITLE= "Cyclic main program"
+
+
+AUTHOR:nb
+FAMILY:nb
+NAME:nb
+VERSION:1.0
+
+
+VAR_TEMP
+       OB1_EV_CLASS:BYTE //Bits 0-3 = 1 (Coming event), Bits 4-7 = 1 (Event class 1)
+       OB1_SCAN_1:BYTE //1 (Cold restart scan 1 of OB 1), 3 (Scan 2-n of OB 1)
+       OB1_PRIORITY:BYTE //1 (Priority of 1 is lowest)
+       OB1_OB_NUMBR:BYTE //1 (Organization block 1, OB1)
+       OB1_RESERVED_1:BYTE //Reserved for system
+       OB1_RESERVED_2:BYTE //Reserved for system
+       OB1_PREV_CYCLE:INT //Cycle time of previous OB1 scan (milliseconds)
+       OB1_MIN_CYCLE:INT //Minimum cycle time of OB1 (milliseconds)
+       OB1_MAX_CYCLE:INT //Maximum cycle time of OB1 (milliseconds)
+       OB1_DATE_TIME:DATE_AND_TIME //Date and time OB1 started
+END_VAR
+BEGIN
+
+NETWORK
+TITLE=Baza control
+//{{k}}
+//If the Transelevator has no box inside and has stopped then it goes at position 0145 and picks up a box
+
+       A    I0.3
+       A    I0.1
+       AN   M16.1
+       S    M16.2
+       A    I0.0
+       A    M16.1
+       R    M16.2
+       A    M16.2
+       =    M16.0
+NETWORK
+TITLE= Pick up box control
+//{{k}}
+
+       A    I0.6
+       AN   M16.1
+       A    I0.1
+       A    I0.0
+       S    M16.3
+       A    I0.5
+       R    M16.3
+       A    M16.3
+       =    Q0.6
+NETWORK
+TITLE=Position 00 control
+//{{a}}
+
+       A    M16.1
+       AN   M16.7
+       A    I0.3
+       S    M9.6
+       A    M0.0
+       A    I0.1
+       AN   M16.1
+       R    M9.6
+       A    M9.6
+       =    M0.0
+NETWORK
+TITLE=Position 01 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.0
+       A    M16.7
+       A    I0.3
+       S    M9.7
+       A    M0.1
+       A    I0.1
+       AN   M16.1
+       R    M9.7
+       A    M9.7
+       =    M0.1
+NETWORK
+TITLE=Position 02 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.1
+       A    M16.7
+       A    M17.0
+       A    I0.3
+       S    M10.0
+       A    M0.2
+       A    I0.1
+       AN   M16.1
+       R    M10.0
+       A    M10.0
+       =    M0.2
+NETWORK
+TITLE=Position 03 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.2
+       A    M16.7
+       A    M17.0
+       A    M17.1
+       A    I0.3
+       S    M10.1
+       A    M0.3
+       A    I0.1
+       AN   M16.1
+       R    M10.1
+       A    M10.1
+       =    M0.3
+NETWORK
+TITLE=Position 04 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.3
+       A    M16.7
+       A    M17.0
+       A    M17.1
+       A    M17.2
+       A    I0.3
+       S    M10.2
+       A    M0.4
+       A    I0.1
+       AN   M16.1
+       R    M10.2
+       A    M10.2
+       =    M0.4
+NETWORK
+TITLE=Position 10 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.4
+       A    M29.3
+       A    I0.3
+       S    M10.3
+       A    M1.0
+       A    I0.1
+       AN   M16.1
+       R    M10.3
+       A    M10.3
+       =    M1.0
+NETWORK
+TITLE=Position 11 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.5
+       A    M29.3
+       A    M17.4
+       A    I0.3
+       S    M10.4
+       A    M1.1
+       A    I0.1
+       AN   M16.1
+       R    M10.4
+       A    M10.4
+       =    M1.1
+NETWORK
+TITLE=Position 12 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.6
+       A    M29.3
+       A    M17.4
+       A    M17.5
+       A    I0.3
+       S    M10.5
+       A    M1.2
+       A    I0.1
+       AN   M16.1
+       R    M10.5
+       A    M10.5
+       =    M1.2
+NETWORK
+TITLE=Position 13 control
+//{{a}}
+
+       A    M16.1
+       AN   M17.7
+       A    M29.3
+       A    M17.4
+       A    M17.5
+       A    M17.6
+       A    I0.3
+       S    M10.6
+       A    M1.3
+       A    I0.1
+       AN   M16.1
+       R    M10.6
+       A    M10.6
+       =    M1.3
+NETWORK
+TITLE=Position 14 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.0
+       A    M29.3
+       A    M17.4
+       A    M17.5
+       A    M17.6
+       A    M17.7
+       A    I0.3
+       S    M10.7
+       A    M1.4
+       A    I0.1
+       AN   M16.1
+       R    M10.7
+       A    M10.7
+       =    M1.4
+NETWORK
+TITLE=Position 20 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.1
+       A    M29.3
+       A    M29.4
+       A    I0.3
+       S    M11.0
+       A    M2.0
+       A    I0.1
+       AN   M16.1
+       R    M11.0
+       A    M11.0
+       =    M2.0
+NETWORK
+TITLE=Position 21 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.2
+       A    M29.3
+       A    M29.4
+       A    M18.1
+       A    I0.3
+       S    M11.1
+       A    M2.1
+       A    I0.1
+       AN   M16.1
+       R    M11.1
+       A    M11.1
+       =    M2.1
+NETWORK
+TITLE=Position 22 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.3
+       A    M29.3
+       A    M29.4
+       A    M18.1
+       A    M18.2
+       A    I0.3
+       S    M11.2
+       A    M2.2
+       A    I0.1
+       AN   M16.1
+       R    M11.2
+       A    M11.2
+       =    M2.2
+NETWORK
+TITLE=Position 23 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.4
+       A    M29.3
+       A    M29.4
+       A    M18.1
+       A    M18.2
+       A    M18.3
+       A    I0.3
+       S    M11.3
+       A    M2.3
+       A    I0.1
+       AN   M16.1
+       R    M11.3
+       A    M11.3
+       =    M2.3
+NETWORK
+TITLE=Position 24 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.5
+       A    M29.3
+       A    M29.4
+       A    M18.1
+       A    M18.2
+       A    M18.3
+       A    M18.4
+       A    I0.3
+       S    M11.4
+       A    M2.4
+       A    I0.1
+       AN   M16.1
+       R    M11.4
+       A    M11.4
+       =    M2.4
+NETWORK
+TITLE=Position 30 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.6
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    I0.3
+       S    M11.5
+       A    M3.0
+       A    I0.1
+       AN   M16.1
+       R    M11.5
+       A    M11.5
+       =    M3.0
+NETWORK
+TITLE=Position 31 control
+//{{a}}
+
+       A    M16.1
+       AN   M18.7
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M18.6
+       A    I0.3
+       S    M11.6
+       A    M3.1
+       A    I0.1
+       AN   M16.1
+       R    M11.6
+       A    M11.6
+       =    M3.1
+NETWORK
+TITLE=Position 32 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.0
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M18.6
+       A    M18.7
+       A    I0.3
+       S    M11.7
+       A    M3.2
+       A    I0.1
+       AN   M16.1
+       R    M11.7
+       A    M11.7
+       =    M3.2
+NETWORK
+TITLE=Position 33 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.1
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M18.6
+       A    M18.7
+       A    M19.0
+       A    I0.3
+       S    M12.0
+       A    M3.3
+       A    I0.1
+       AN   M16.1
+       R    M12.0
+       A    M12.0
+       =    M3.3
+NETWORK
+TITLE=Position 34 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.2
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M18.6
+       A    M18.7
+       A    M19.0
+       A    M19.1
+       A    I0.3
+       S    M12.1
+       A    M3.4
+       A    I0.1
+       AN   M16.1
+       R    M12.1
+       A    M12.1
+       =    M3.4
+NETWORK
+TITLE=Position 40 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.3
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    I0.3
+       S    M12.2
+       A    M4.0
+       A    I0.1
+       AN   M16.1
+       R    M12.2
+       A    M12.2
+       =    M4.0
+NETWORK
+TITLE=Position 41 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.4
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M19.3
+       A    I0.3
+       S    M12.3
+       A    M4.1
+       A    I0.1
+       AN   M16.1
+       R    M12.3
+       A    M12.3
+       =    M4.1
+NETWORK
+TITLE=Position 42 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.5
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M19.3
+       A    M19.4
+       A    I0.3
+       S    M12.4
+       A    M4.2
+       A    I0.1
+       AN   M16.1
+       R    M12.4
+       A    M12.4
+       =    M4.2
+NETWORK
+TITLE=Position 43 control
+//{{k}}
+
+       A    M16.1
+       AN   M19.6
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M19.3
+       A    M19.4
+       A    M19.5
+       A    I0.3
+       S    M12.5
+       A    M4.3
+       A    I0.1
+       AN   M16.1
+       R    M12.5
+       A    M12.5
+       =    M4.3
+NETWORK
+TITLE=Position 44 control
+//{{a}}
+
+       A    M16.1
+       AN   M19.7
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M19.3
+       A    M19.4
+       A    M19.5
+       A    M19.6
+       A    I0.3
+       S    M12.6
+       A    M4.4
+       A    I0.1
+       AN   M16.1
+       R    M12.6
+       A    M12.6
+       =    M4.4
+NETWORK
+TITLE=Position 50 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.0
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    I0.3
+       S    M12.7
+       A    M5.0
+       A    I0.1
+       AN   M16.1
+       R    M12.7
+       A    M12.7
+       =    M5.0
+NETWORK
+TITLE=Position 51 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.1
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M20.0
+       A    I0.3
+       S    M13.0
+       A    M5.1
+       A    I0.1
+       AN   M16.1
+       R    M13.0
+       A    M13.0
+       =    M5.1
+NETWORK
+TITLE=Position 52 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.2
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M20.0
+       A    M20.1
+       A    I0.3
+       S    M13.1
+       A    M5.2
+       A    I0.1
+       AN   M16.1
+       R    M13.1
+       A    M13.1
+       =    M5.2
+NETWORK
+TITLE=Position 53 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.3
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M20.0
+       A    M20.1
+       A    M20.2
+       A    I0.3
+       S    M13.2
+       A    M5.3
+       A    I0.1
+       AN   M16.1
+       R    M13.2
+       A    M13.2
+       =    M5.3
+NETWORK
+TITLE=Position 54 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.4
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M20.0
+       A    M20.1
+       A    M20.2
+       A    M20.3
+       A    I0.3
+       S    M13.3
+       A    M5.4
+       A    I0.1
+       AN   M16.1
+       R    M13.3
+       A    M13.3
+       =    M5.4
+NETWORK
+TITLE=Position 60 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.5
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    I0.3
+       S    M13.4
+       A    M6.0
+       A    I0.1
+       AN   M16.1
+       R    M13.4
+       A    M13.4
+       =    M6.0
+NETWORK
+TITLE=Position 61 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.6
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M20.5
+       A    I0.3
+       S    M13.5
+       A    M6.1
+       A    I0.1
+       AN   M16.1
+       R    M13.5
+       A    M13.5
+       =    M6.1
+NETWORK
+TITLE=Position 62 control
+//{{a}}
+
+       A    M16.1
+       AN   M20.7
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M20.6
+       A    I0.3
+       S    M13.6
+       A    M6.2
+       A    I0.1
+       AN   M16.1
+       R    M13.6
+       A    M13.6
+       =    M6.2
+NETWORK
+TITLE=Position 63 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.0
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M20.5
+       A    M20.6
+       A    M20.7
+       A    I0.3
+       S    M13.7
+       A    M6.3
+       A    I0.1
+       AN   M16.1
+       R    M13.7
+       A    M13.7
+       =    M6.3
+NETWORK
+TITLE=Position 64 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.1
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M20.5
+       A    M20.6
+       A    M20.7
+       A    M21.0
+       A    I0.3
+       S    M14.0
+       A    M6.4
+       A    I0.1
+       AN   M16.1
+       R    M14.0
+       A    M14.0
+       =    M6.4
+NETWORK
+TITLE=Position 70 control
+//{{k}}
+
+       A    M16.1
+       AN   M21.2
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    I0.3
+       S    M14.1
+       A    M7.0
+       A    I0.1
+       AN   M16.1
+       R    M14.1
+       A    M14.1
+       =    M7.0
+NETWORK
+TITLE=Position 71 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.3
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M21.2
+       A    I0.3
+       S    M14.2
+       A    M7.1
+       A    I0.1
+       AN   M16.1
+       R    M14.2
+       A    M14.2
+       =    M7.1
+NETWORK
+TITLE=Position 72 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.4
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M21.2
+       A    M21.3
+       A    I0.3
+       S    M14.3
+       A    M7.2
+       A    I0.1
+       AN   M16.1
+       R    M14.3
+       A    M14.3
+       =    M7.2
+NETWORK
+TITLE=Position 73 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.5
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M21.2
+       A    M21.3
+       A    M21.4
+       A    I0.3
+       S    M14.4
+       A    M7.3
+       A    I0.1
+       AN   M16.1
+       R    M14.4
+       A    M14.4
+       =    M7.3
+NETWORK
+TITLE=Position 74 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.6
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M21.2
+       A    M21.3
+       A    M21.4
+       A    M21.5
+       A    I0.3
+       S    M14.5
+       A    M7.4
+       A    I0.1
+       AN   M16.1
+       R    M14.5
+       A    M14.5
+       =    M7.4
+NETWORK
+TITLE=Position 80 control
+//{{a}}
+
+       A    M16.1
+       AN   M21.7
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    I0.3
+       S    M14.6
+       A    M8.0
+       A    I0.1
+       AN   M16.1
+       R    M14.6
+       A    M14.6
+       =    M8.0
+NETWORK
+TITLE=Position 81 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.0
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M21.7
+       A    I0.3
+       S    M14.7
+       A    M8.1
+       A    I0.1
+       AN   M16.1
+       R    M14.7
+       A    M14.7
+       =    M8.1
+NETWORK
+TITLE=Position 82 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.1
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M21.7
+       A    M22.0
+       A    I0.3
+       S    M15.0
+       A    M8.2
+       A    I0.1
+       AN   M16.1
+       R    M15.0
+       A    M15.0
+       =    M8.2
+NETWORK
+TITLE=Position 83 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.2
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M21.7
+       A    M22.0
+       A    M22.1
+       A    I0.3
+       S    M15.1
+       A    M8.3
+       A    I0.1
+       AN   M16.1
+       R    M15.1
+       A    M15.1
+       =    M8.3
+NETWORK
+TITLE=Position 84 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.3
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M21.7
+       A    M22.0
+       A    M22.1
+       A    M22.2
+       A    I0.3
+       S    M15.2
+       A    M8.4
+       A    I0.1
+       AN   M16.1
+       R    M15.2
+       A    M15.2
+       =    M8.4
+NETWORK
+TITLE=Position 90 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.4
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M30.3
+       A    I0.3
+       S    M15.3
+       A    M9.0
+       A    I0.1
+       AN   M16.1
+       R    M15.3
+       A    M15.3
+       =    M9.0
+NETWORK
+TITLE=Position 91 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.5
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M30.3
+       A    M22.4
+       A    I0.3
+       S    M15.4
+       A    M9.1
+       A    I0.1
+       AN   M16.1
+       R    M15.4
+       A    M15.4
+       =    M9.1
+NETWORK
+TITLE=Position 92 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.6
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M30.3
+       A    M22.4
+       A    M22.5
+       A    I0.3
+       S    M15.5
+       A    M9.2
+       A    I0.1
+       AN   M16.1
+       R    M15.5
+       A    M15.5
+       =    M9.2
+NETWORK
+TITLE=Position 93 control
+//{{a}}
+
+       A    M16.1
+       AN   M22.7
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M30.3
+       A    M22.4
+       A    M22.5
+       A    M22.6
+       A    I0.3
+       S    M15.6
+       A    M9.3
+       A    I0.1
+       AN   M16.1
+       R    M15.6
+       A    M15.6
+       =    M9.3
+NETWORK
+TITLE=Position 94 control
+//{{a}}
+
+       A    M16.1
+       AN   M23.0
+       A    M29.3
+       A    M29.4
+       A    M29.5
+       A    M29.6
+       A    M29.7
+       A    M30.0
+       A    M30.1
+       A    M30.2
+       A    M30.3
+       A    M22.4
+       A    M22.5
+       A    M22.6
+       A    M22.7
+       A    I0.3
+       S    M15.7
+       A    M9.4
+       A    I0.1
+       AN   M16.1
+       R    M15.7
+       A    M15.7
+       =    M9.4
+NETWORK
+TITLE=Position 00 Memory Control
+//{{a}}
+
+       A    M0.0
+       A    I0.1
+       A    I0.4
+       S    M23.1
+       NOP  0  
+       A    M23.1
+       =    M16.7
+NETWORK
+TITLE=Position 01 Memory Control
+//{{a}}
+
+       A    M0.1
+       A    I0.1
+       A    I0.4
+       S    M23.2
+       NOP  0  
+       A    M23.2
+       =    M17.0
+NETWORK
+TITLE=Position 02 Memory Control
+//{{a}}
+
+       A    M0.2
+       A    I0.1
+       A    I0.4
+       S    M23.3
+       NOP  0
+       A    M23.3
+       =    M17.1
+NETWORK
+TITLE=Position 03 Memory Control
+//{{a}}
+
+       A    M0.3
+       A    I0.1
+       A    I0.4
+       S    M23.4
+       NOP  0
+       A    M23.4
+       =    M17.2
+NETWORK
+TITLE=Position 04 Memory Control
+//{{a}}
+
+       A    M0.4
+       A    I0.1
+       A    I0.4
+       S    M23.5
+       NOP  0  
+       A    M23.5
+       =    M17.3
+NETWORK
+TITLE=Position 10 Memory Control
+//{{a}}
+
+       A    M1.0
+       A    I0.1
+       A    I0.4
+       S    M23.6
+       NOP  0  
+       A    M23.6
+       =    M17.4
+NETWORK
+TITLE=Position 11 Memory Control
+//{{a}}
+
+       A    M1.1
+       A    I0.1
+       A    I0.4
+       S    M23.7
+       NOP  0  
+       A    M23.7
+       =    M17.5
+NETWORK
+TITLE=Position 12 Memory Control
+//{{a}}
+
+       A    M1.2
+       A    I0.1
+       A    I0.4
+       S    M24.0
+       NOP  0  
+       A    M24.0
+       =    M17.6
+NETWORK
+TITLE=Position 13 Memory Control
+//{{a}}
+
+       A    M1.3
+       A    I0.1
+       A    I0.4
+       S    M24.1
+       NOP  0  
+       A    M24.1
+       =    M17.7
+NETWORK
+TITLE=Position 14 Memory Control
+//{{a}}
+
+       A    M1.4
+       A    I0.1
+       A    I0.4
+       S    M24.2
+       NOP  0  
+       A    M24.2
+       =    M18.0
+NETWORK
+TITLE=Position 20 Memory Control
+//{{a}}
+
+       A    M2.0
+       A    I0.1
+       A    I0.4
+       S    M24.3
+       NOP  0  
+       A    M24.3
+       =    M18.1
+NETWORK
+TITLE=Position 21 Memory Control
+//{{a}}
+
+       A    M2.1
+       A    I0.1
+       A    I0.4
+       S    M24.4
+       NOP  0  
+       A    M24.4
+       =    M18.2
+NETWORK
+TITLE=Position 22 Memory Control
+//{{a}}
+
+       A    M2.2
+       A    I0.1
+       A    I0.4
+       S    M24.5
+       NOP  0  
+       A    M24.5
+       =    M18.3
+NETWORK
+TITLE=Position 23 Memory Control
+//{{a}}
+
+       A    M2.3
+       A    I0.1
+       A    I0.4
+       S    M24.6
+       NOP  0  
+       A    M24.6
+       =    M18.4
+NETWORK
+TITLE=Position 24 Memory Control
+//{{a}}
+
+       A    M2.4
+       A    I0.1
+       A    I0.4
+       S    M24.7
+       NOP  0  
+       A    M24.7
+       =    M18.5
+NETWORK
+TITLE=Position 30 Memory Control
+//{{a}}
+
+       A    M3.0
+       A    I0.1
+       A    I0.4
+       S    M25.0
+       NOP  0  
+       A    M25.0
+       =    M18.6
+NETWORK
+TITLE=Position 31 Memory Control
+//{{a}}
+
+       A    M3.1
+       A    I0.1
+       A    I0.4
+       S    M25.1
+       NOP  0  
+       A    M25.1
+       =    M18.7
+NETWORK
+TITLE=Position 32 Memory Control
+//{{a}}
+
+       A    M3.2
+       A    I0.1
+       A    I0.4
+       S    M25.2
+       NOP  0  
+       A    M25.2
+       =    M19.0
+NETWORK
+TITLE=Position 33 Memory Control
+//{{a}}
+
+       A    M3.3
+       A    I0.1
+       A    I0.4
+       S    M25.3
+       NOP  0  
+       A    M25.3
+       =    M19.1
+NETWORK
+TITLE=Position 34 Memory Control
+//{{a}}
+
+       A    M3.4
+       A    I0.1
+       A    I0.4
+       S    M25.4
+       NOP  0  
+       A    M25.4
+       =    M19.2
+NETWORK
+TITLE=Position 40 Memory Control
+//{{a}}
+
+       A    M4.0
+       A    I0.1
+       A    I0.4
+       S    M25.5
+       NOP  0  
+       A    M25.5
+       =    M19.3
+NETWORK
+TITLE=Position 41 Memory Control
+//{{a}}
+
+       A    M4.1
+       A    I0.1
+       A    I0.4
+       S    M25.6
+       NOP  0  
+       A    M25.6
+       =    M19.4
+NETWORK
+TITLE=Position 42 Memory Control
+//{{a}}
+
+       A    M4.2
+       A    I0.1
+       A    I0.4
+       S    M25.7
+       NOP  0  
+       A    M25.7
+       =    M19.5
+NETWORK
+TITLE=Position 43 Memory Control
+//{{k}}
+
+       A    M4.3
+       A    I0.1
+       A    I0.4
+       S    M26.0
+       NOP  0  
+       A    M26.0
+       =    M19.6
+NETWORK
+TITLE=Position 44 Memory Control
+//{{a}}
+
+       A    M4.4
+       A    I0.1
+       A    I0.4
+       S    M26.1
+       NOP  0  
+       A    M26.1
+       =    M19.7
+NETWORK
+TITLE=Position 50 Memory Control
+//{{a}}
+
+       A    M5.0
+       A    I0.1
+       A    I0.4
+       S    M26.2
+       NOP  0  
+       A    M26.2
+       =    M20.0
+NETWORK
+TITLE=Position 51 Memory Control
+//{{a}}
+
+       A    M5.1
+       A    I0.1
+       A    I0.4
+       S    M26.3
+       NOP  0  
+       A    M26.3
+       =    M20.1
+NETWORK
+TITLE=Position 52 Memory Control
+//{{a}}
+
+       A    M5.2
+       A    I0.1
+       A    I0.4
+       S    M26.4
+       NOP  0  
+       A    M26.4
+       =    M20.2
+NETWORK
+TITLE=Position 53 Memory Control
+//{{a}}
+
+       A    M5.3
+       A    I0.1
+       A    I0.4
+       S    M26.5
+       NOP  0  
+       A    M26.5
+       =    M20.3
+NETWORK
+TITLE=Position 54 Memory Control
+//{{a}}
+
+       A    M5.4
+       A    I0.1
+       A    I0.4
+       S    M26.6
+       NOP  0  
+       A    M26.6
+       =    M20.4
+NETWORK
+TITLE=Position 60 Memory Control
+//{{a}}
+
+       A    M6.0
+       A    I0.1
+       A    I0.4
+       S    M26.7
+       NOP  0  
+       A    M26.7
+       =    M20.5
+NETWORK
+TITLE=Position 61 Memory Control
+//{{a}}
+
+       A    M6.1
+       A    I0.1
+       A    I0.4
+       S    M27.0
+       NOP  0  
+       A    M27.0
+       =    M20.6
+NETWORK
+TITLE=Position 62 Memory Control
+//{{a}}
+
+       A    M6.2
+       A    I0.1
+       A    I0.4
+       S    M27.1
+       NOP  0  
+       A    M27.1
+       =    M20.7
+NETWORK
+TITLE=Position 63 Memory Control
+//{{a}}
+
+       A    M6.3
+       A    I0.1
+       A    I0.4
+       S    M27.2
+       NOP  0  
+       A    M27.2
+       =    M21.0
+NETWORK
+TITLE=Position 64 Memory Control
+//{{a}}
+
+       A    M6.4
+       A    I0.1
+       A    I0.4
+       S    M27.3
+       NOP  0  
+       A    M27.3
+       =    M21.1
+NETWORK
+TITLE=Position 70 Memory Control
+//{{a}}
+
+       A    M7.0
+       A    I0.1
+       A    I0.4
+       S    M23.1
+       NOP  0  
+       A    M27.4
+       =    M21.2
+NETWORK
+TITLE=Position 71 Memory Control
+//{{a}}
+
+       A    M7.1
+       A    I0.1
+       A    I0.4
+       S    M27.5
+       NOP  0  
+       A    M27.5
+       =    M21.3
+NETWORK
+TITLE=Position 72 Memory Control
+//{{a}}
+
+       A    M7.2
+       A    I0.1
+       A    I0.4
+       S    M27.6
+       NOP  0  
+       A    M27.6
+       =    M21.4
+NETWORK
+TITLE=Position 73 Memory Control
+//{{a}}
+
+       A    M7.3
+       A    I0.1
+       A    I0.4
+       S    M27.7
+       NOP  0  
+       A    M27.7
+       =    M21.5
+NETWORK
+TITLE=Position 74 Memory Control
+//{{a}}
+
+       A    M7.4
+       A    I0.1
+       A    I0.4
+       S    M28.0
+       NOP  0  
+       A    M28.0
+       =    M21.6
+NETWORK
+TITLE=Position 80 Memory Control
+//{{a}}
+
+       A    M8.0
+       A    I0.1
+       A    I0.4
+       S    M28.1
+       NOP  0  
+       A    M28.1
+       =    M21.7
+NETWORK
+TITLE=Position 81 Memory Control
+//{{a}}
+
+       A    M8.1
+       A    I0.1
+       A    I0.4
+       S    M28.2
+       NOP  0  
+       A    M28.2
+       =    M22.0
+NETWORK
+TITLE=Position 82 Memory Control
+//{{a}}
+
+       A    M8.2
+       A    I0.1
+       A    I0.4
+       S    M28.3
+       NOP  0  
+       A    M28.3
+       =    M22.1
+NETWORK
+TITLE=Position 83 Memory Control
+//{{a}}
+
+       A    M8.3
+       A    I0.1
+       A    I0.4
+       S    M28.4
+       NOP  0  
+       A    M28.4
+       =    M22.2
+NETWORK
+TITLE=Position 84 Memory Control
+//{{a}}
+
+       A    M8.4
+       A    I0.1
+       A    I0.4
+       S    M28.5
+       NOP  0  
+       A    M28.5
+       =    M22.3
+NETWORK
+TITLE=Position 90 Memory Control
+//{{a}}
+
+       A    M9.0
+       A    I0.1
+       A    I0.4
+       S    M28.6
+       NOP  0  
+       A    M28.6
+       =    M22.4
+NETWORK
+TITLE=Position 91 Memory Control
+//{{a}}
+
+       A    M9.1
+       A    I0.1
+       A    I0.4
+       S    M28.7
+       NOP  0  
+       A    M28.7
+       =    M22.5
+NETWORK
+TITLE=Position 92 Memory Control
+//{{a}}
+
+       A    M9.2
+       A    I0.1
+       A    I0.4
+       S    M29.0
+       NOP  0  
+       A    M29.0
+       =    M22.6
+NETWORK
+TITLE=Position 93 Memory Control
+//{{a}}
+
+       A    M9.3
+       A    I0.1
+       A    I0.4
+       S    M29.1
+       NOP  0  
+       A    M29.1
+       =    M22.7
+NETWORK
+TITLE=Position 94 Memory Control
+//{{a}}
+
+       A    M9.4
+       A    I0.1
+       A    I0.4
+       S    M29.2
+       NOP  0  
+       A    M29.2
+       =    M23.0
+NETWORK
+TITLE= Drop Box
+//{{k}}
+
+       A    M16.1
+       A    I0.1
+       AN   I0.0
+       S    M16.5
+       A    Q0.7
+       AN   M16.1
+       AN   I0.5
+       A    I0.4
+       R    M16.5
+       A    M16.5
+       =    Q0.7
+NETWORK
+TITLE=Actuator 0 control
+//{{f}}
+
+       A(  
+       O    M1.0
+       O    M3.0
+       O    M7.0
+       O    M9.0
+       O    M1.1
+       O    M3.1
+       O    M5.1
+       O    M9.1
+       O    M1.2
+       O    M3.2
+       O    M5.2
+       O    M7.2
+       O    M9.2
+       O    M1.3
+       O    M3.3
+       O    M5.3
+       O    M7.3
+       O    M9.3
+       O    M1.4
+       O    M3.4
+       O    M5.4
+       O    M7.4
+       O    M9.4
+       O    M16.0
+       O    M7.1
+       )    
+       =    Q0.0
+NETWORK
+TITLE=Actuator 1 control
+//{{f}}
+
+       O    M0.0
+       O    M3.0
+       O    M4.0
+       O    M7.0
+       O    M8.0
+       O    M1.1
+       O    M2.1
+       O    M5.1
+       O    M6.1
+       O    M9.1
+       O    M0.2
+       O    M3.2
+       O    M4.2
+       O    M7.2
+       O    M8.2
+       O    M1.3
+       O    M2.3
+       O    M5.3
+       O    M6.3
+       O    M9.3
+       O    M0.4
+       O    M3.4
+       O    M4.4
+       O    M7.4
+       O    M8.4
+       O    M16.0
+       =    Q0.1
+NETWORK
+TITLE=Actuator 2 control
+//{{f}}
+
+       O    M3.0
+       O    M4.0
+       O    M5.0
+       O    M6.0
+       O    M1.1
+       O    M2.1
+       O    M3.1
+       O    M4.1
+       O    M9.1
+       O    M0.2
+       O    M1.2
+       O    M2.2
+       O    M7.2
+       O    M8.2
+       O    M9.2
+       O    M0.3
+       O    M5.3
+       O    M6.3
+       O    M7.3
+       O    M8.3
+       O    M3.4
+       O    M4.4
+       O    M5.4
+       O    M6.4
+       =    Q0.2
+NETWORK
+TITLE=Actuator 3 control
+//{{f}}
+
+       O    M3.0
+       O    M4.0
+       O    M5.0
+       O    M6.0
+       O    M7.0
+       O    M8.0
+       O    M9.0
+       O    M0.1
+       O    M9.1
+       O    M0.2
+       O    M1.2
+       O    M2.2
+       O    M3.2
+       O    M4.2
+       O    M5.2
+       O    M6.2
+       O    M5.3
+       O    M6.3
+       O    M7.3
+       O    M8.3
+       O    M9.3
+       O    M0.4
+       O    M1.4
+       O    M2.4
+       =    Q0.3
+NETWORK
+TITLE= Actuator 4 control
+//{{f}}
+
+       O    M0.0
+       O    M1.0
+       O    M2.0
+       O    M9.1
+       O    M0.2
+       O    M1.2
+       O    M2.2
+       O    M3.2
+       O    M4.2
+       O    M5.2
+       O    M6.2
+       O    M7.2
+       O    M8.2
+       O    M9.2
+       O    M0.3
+       O    M1.3
+       O    M2.3
+       O    M3.3
+       O    M4.4
+       O    M16.0
+       O    M4.3
+       =    Q0.4
+NETWORK
+TITLE=Actuator 5 control
+//{{f}}
+
+       O    M0.0
+       O    M1.0
+       O    M2.0
+       O    M3.0
+       O    M4.0
+       O    M5.0
+       O    M6.0
+       O    M7.0
+       O    M8.0
+       O    M9.0
+       O    M0.1
+       O    M1.1
+       O    M2.1
+       O    M3.1
+       O    M4.1
+       O    M5.1
+       O    M6.1
+       O    M7.1
+       O    M8.1
+       O    M16.0
+       =    Q0.5
+NETWORK
+TITLE=Validate Has Box Variable
+//{{k}}
+
+       A    I0.0
+       A    I0.6
+       A    I0.5
+       S    M16.6
+       A    I0.4
+       A    I0.5
+       R    M16.6
+       A    M16.6
+       =    M16.1
+NETWORK
+TITLE=Column 0 full
+//{{a}}
+
+       A    M16.7
+       A    M17.0
+       A    M17.1
+       A    M17.2
+       A    M17.3
+       =    M29.3
+NETWORK
+TITLE=Column 1 full
+//{{a}}
+
+       A    M17.4
+       A    M17.5
+       A    M17.6
+       A    M17.7
+       A    M18.0
+       =    M29.4
+NETWORK
+TITLE=Column 2 full
+//{{a}}
+
+       A    M18.1
+       A    M18.2
+       A    M18.3
+       A    M18.4
+       A    M18.5
+       =    M29.5
+NETWORK
+TITLE=Column 3 full
+//{{a}}
+
+       A    M18.6
+       A    M18.7
+       A    M19.0
+       A    M19.1
+       A    M19.2
+       =    M29.6
+NETWORK
+TITLE=Column 4 full
+//{{a}}
+
+       A    M19.3
+       A    M19.4
+       A    M19.5
+       A    M19.6
+       A    M19.7
+       =    M29.7
+NETWORK
+TITLE=Column 5 full
+//{{a}}
+
+       A    M20.0
+       A    M20.1
+       A    M20.2
+       A    M20.3
+       A    M20.4
+       =    M30.0
+NETWORK
+TITLE=Column 6 full
+//{{a}}
+
+       A    M20.5
+       A    M20.6
+       A    M20.7
+       A    M21.0
+       A    M21.1
+       =    M30.1
+NETWORK
+TITLE=Column 7 full
+//{{a}}
+
+       A    M21.2
+       A    M21.3
+       A    M21.4
+       A    M21.5
+       A    M21.6
+       =    M30.2
+NETWORK
+TITLE=Column 8 full
+//{{a}}
+
+       A    M21.7
+       A    M22.0
+       A    M22.1
+       A    M22.2
+       A    M22.3
+       =    M30.3
+NETWORK
+TITLE=Column 9 full
+//{{a}}
+
+       A    M22.4
+       A    M22.5
+       A    M22.6
+       A    M22.7
+       A    M23.0
+       =    M30.4
+END_ORGANIZATION_BLOCK

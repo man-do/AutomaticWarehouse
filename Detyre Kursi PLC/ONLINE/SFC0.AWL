@@ -1,0 +1,28 @@
+//{{WINSPSPROTECT            
+//{{V2}}            
+FUNCTION SFC0            
+TITLE =            
+            
+                        
+KNOW_HOW_PROTECT            
+AUTHOR:  MHJ            
+FAMILY:  CLK_FUNC            
+NAME:    SET_CLK            
+VERSION: 01.00            
+            
+            
+VAR_INPUT            
+    IN0:DATE_AND_TIME            
+END_VAR            
+            
+VAR_OUTPUT            
+    RET_VAL:INT            
+END_VAR            
+            
+VAR_IN_OUT            
+END_VAR            
+            
+VAR_TEMP            
+END_VAR            
+BEGIN            
+END_FUNCTION            
